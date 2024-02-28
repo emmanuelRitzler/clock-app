@@ -47,6 +47,7 @@ async function getMessage() {
     try {
         const response = await fetch("http://worldtimeapi.org/api/ip");
         const result = await response.json();
+        console.log(result);
         const datetime = result.datetime;
         const dateObject = new Date(datetime);
         const hours = dateObject.getHours();
@@ -65,6 +66,9 @@ async function getMessage() {
 
         const greeting = document.querySelector('#greeting-message');
         greeting.innerHTML = message;
+
+        const timezone = document.querySelector('#actual-zone');
+        timezone.innerHTML = result.abbreviation;
     }
     catch (error) {
         error();
