@@ -1,22 +1,21 @@
-// async function fetchData() {
-//     try {
-//         const response = await fetch("/fetchData");
-        
-//         if (!response.ok) {
-//             throw new Error('Network response was not ok');
-//         }
-        
-//         const data = await response.json();
-//         console.log(data);
-//     } catch (error) {
-//         console.error('Error fetching data:', error);
-//     }
-// }
-// fetchData();
-
 function error() {
     console.error(error);
 }
+
+async function fetchQuote() {
+    try {
+    const response = await fetch("https://api.quotable.io/quotes/random");
+    const result = await response.json();
+    const quote = document.querySelector('#quote');
+    const author = document.querySelector('#author');
+    quote.innerHTML = `"${result[0].content}"`;
+    author.innerHTML = result[0].author;
+    }
+    catch {
+        error();
+    }
+}
+fetchQuote();
 
 async function fetchTime() {
     try {
@@ -84,7 +83,10 @@ async function changeBackgroundImage() {
     if (hours >= 6 && hours < 18) {
         backgroundImg.style.backgroundImage = 'url(assets/desktop/bg-image-daytime.jpg)';
     }
-    else if (hours >= 18 && hours < 6) {
+    else if (hours >= 18 && hours < 24) {
+        backgroundImg.style.backgroundImage = 'url(assets/desktop/bg-image-nighttime.jpg)';
+    }
+    else if (hours >= 0 && hours < 6) {
         backgroundImg.style.backgroundImage = 'url(assets/desktop/bg-image-nighttime.jpg)';
     }
     else {
