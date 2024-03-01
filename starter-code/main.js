@@ -48,7 +48,6 @@ async function getMessage() {
     try {
         const response = await fetch("http://worldtimeapi.org/api/ip");
         const result = await response.json();
-        console.log(result);
         const datetime = result.datetime;
         const dateObject = new Date(datetime);
         const hours = dateObject.getHours();
@@ -299,7 +298,6 @@ fetchCurrentTime();
 async function fetchDayWeek() {
     const response = await fetch("http://worldtimeapi.org/api/ip")
     const result = await response.json();
-    console.log(result);
     const weekDay = result.day_of_week;
 
     const weekDayNumber = document.querySelector('#weekday-number');
@@ -310,7 +308,6 @@ fetchDayWeek();
 async function fetchDayYear() {
     const response = await fetch("http://worldtimeapi.org/api/ip")
     const result = await response.json();
-    console.log(result);
     const yearDay = result.day_of_year;
 
     const yearDayNumber = document.querySelector('#yearday-number');
@@ -321,7 +318,6 @@ fetchDayYear();
 async function fetchWeekNumber() {
     const response = await fetch("http://worldtimeapi.org/api/ip")
     const result = await response.json();
-    console.log(result);
     const week = result.week_number;
 
     const weekNumber = document.querySelector('#week');

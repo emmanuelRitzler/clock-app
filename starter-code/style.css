@@ -210,11 +210,18 @@ body {
 }
 
 #current-timezone { 
-    width: 70%;
+    width: 100%;
     border-right: 1px solid black;
 }
 
 #day-year { 
-    width: 70%;
+    width: 100%;
     border-right: 1px solid black;
 }
+
+#week-number,
+#day-week {
+    margin-left: 70px;
+    width: 100%;
+}
+
