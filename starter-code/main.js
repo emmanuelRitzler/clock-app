@@ -1,6 +1,10 @@
+// ERROR HANDLING
+
 function error() {
     console.error(error);
 }
+
+// FETCHING DATA
 
 async function fetchQuote() {
     try {
@@ -99,6 +103,32 @@ async function changeBackgroundImage() {
 }
 changeBackgroundImage();
 
+async function changeColorContainer() {
+    const response = await fetch("http://worldtimeapi.org/api/ip");
+    const result = await response.json();
+    const datetime = result.datetime;
+    const dateObject = new Date(datetime);
+    const hours = dateObject.getHours();
+    const containerColor = document.querySelector('#grey-container');
+
+    if (hours >= 6 && hours < 18) {
+        containerColor.style.backgroundColor = 'rgba(151, 151, 151, 0.75)';
+        containerColor.style.color = 'rgb(0, 0, 0)'
+    }
+    else if (hours >= 18 && hours < 24) {
+        containerColor.style.backgroundColor = 'rgba(0, 0, 0, 0.75)';
+        containerColor.style.color = 'rgb(255, 255, 255)'
+    }
+    else if (hours >= 0 && hours < 6) {
+        containerColor.style.backgroundColor = 'rgba(0, 0, 0, 0.75)';
+        containerColor.style.color = 'rgb(255, 255, 255)'
+    }
+    else {
+        error();
+    }
+}
+changeColorContainer();
+
 async function changeIcon() {
     const response = await fetch("http://worldtimeapi.org/api/ip");
     const result = await response.json();
@@ -122,10 +152,11 @@ async function changeIcon() {
 changeIcon();
 
 async function fetchLocation() {
-    const response = await fetch('https://api.ipbase.com/v2/info?apikey=ipb_live_M9R8yrIzgXjESBOsKDq2yoEjUcWMY7fXxRJKhsMa&ip=');
+    const response = await fetch('http://ip-api.com/json/');
     const result = await response.json();
-    const city = result.data.location.city.name_translated;
-    const country = result.data.location.country.name_translated;
+    console.log(result);
+    const city = result.city;
+    const country = result.country;
     const cityCountry = `In ${city}, ${country}`;
     const locationText = document.querySelector('#city');
     locationText.innerHTML = cityCountry;
@@ -157,6 +188,7 @@ refreshArrow.addEventListener('click', event => {
 });
 
 // MENU FOR MORE DATA
+
 let isMoved = false;
 
 const arrow = document.querySelector('#arrow-down-container');
@@ -188,7 +220,7 @@ arrow.addEventListener('click', event => {
         changeArrowButton();
     
         function moveUpTime() {
-            const time = document.querySelector('#actual-time');
+            const time = document.querySelector('.time-and-zone');
             time.style.gridRow = '2 / 4';
         }
         moveUpTime();
@@ -212,13 +244,16 @@ arrow.addEventListener('click', event => {
         moveUpZone();
     
         function moveUpButton() {
-            const button = document.querySelector('.button');
+            const button = document.querySelector('.button-and-loc');
             button.style.gridRow = '4 / 6';
         }
         moveUpButton();
 
         const greyContainer = document.querySelector('#grey-container');
         greyContainer.style.display = 'flex';
+
+        const bodyBackground = document.body;
+        bodyBackground.style.backgroundSize = 'contain';
 
         isMoved = true;
     }
@@ -247,7 +282,7 @@ arrow.addEventListener('click', event => {
         changeArrowButton();
     
         function moveDownTime() {
-            const time = document.querySelector('#actual-time');
+            const time = document.querySelector('.time-and-zone');
             time.style.gridRow = '7 / 9';
         }
         moveDownTime();
@@ -271,7 +306,7 @@ arrow.addEventListener('click', event => {
         moveDownZone();
     
         function moveDownButton() {
-            const button = document.querySelector('.button');
+            const button = document.querySelector('.button-and-loc');
             button.style.gridRow = '10 / 11';
         }
         moveDownButton();
