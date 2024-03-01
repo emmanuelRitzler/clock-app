@@ -8,6 +8,7 @@ async function fetchQuote() {
     const result = await response.json();
     const quote = document.querySelector('#quote');
     const author = document.querySelector('#author');
+    quoteArray = result.content;
     quote.innerHTML = `"${result[0].content}"`;
     author.innerHTML = result[0].author;
     }
@@ -108,10 +109,10 @@ async function changeIcon() {
     const icon = document.querySelector('#icon');
     let image = icon.getAttribute('src');
 
-    if (hours < 17) {
+    if (hours < 18) {
         image = 'assets/desktop/icon-sun.svg';
     }
-    else if (hours >= 17 && hours < 24) {
+    else if (hours >= 18 && hours < 24) {
         image = 'assets/desktop/icon-moon.svg';
     }
     else {
@@ -132,4 +133,198 @@ async function fetchLocation() {
 }
 fetchLocation();
 
+// EVENT FOR CHANGING QUOTE
 
+const refreshArrow = document.querySelector('#refresh-arrow');
+
+refreshArrow.addEventListener('click', event => {
+    event.preventDefault;
+
+    async function changeQuote() {
+        try {
+            const response = await fetch("https://api.quotable.io/quotes/random");
+            const result = await response.json();
+            const quote = document.querySelector('#quote');
+            const author = document.querySelector('#author');
+            quoteArray = result.content;
+            quote.innerHTML = `"${result[0].content}"`;
+            author.innerHTML = result[0].author;
+        }
+        catch {
+            error();
+        }
+    }
+    changeQuote();
+});
+
+// MENU FOR MORE DATA
+let isMoved = false;
+
+const arrow = document.querySelector('#arrow-down-container');
+arrow.addEventListener('click', event => {
+    event.preventDefault;
+
+    if (!isMoved) {
+        function removeQuote() {
+            const quote = document.querySelector('#quote');
+            const author = document.querySelector('#author');
+            const arrow = document.querySelector('#refresh-arrow');
+    
+            quote.style.display = 'none';
+            author.style.display = 'none';
+            arrow.style.display = 'none';
+        }
+        removeQuote();
+    
+        function changeTextButton() {
+            const textButton = document.querySelector('#button-text');
+            textButton.innerHTML = 'LESS';
+        }
+        changeTextButton();
+    
+        function changeArrowButton() {
+            const arrowButton = document.querySelector('#arrow-down');
+            arrowButton.setAttribute('src', 'assets/desktop/icon-arrow-up.svg');
+        }
+        changeArrowButton();
+    
+        function moveUpTime() {
+            const time = document.querySelector('#actual-time');
+            time.style.gridRow = '2 / 4';
+        }
+        moveUpTime();
+    
+        function moveUpLocation() {
+            const location = document.querySelector('.location');
+            location.style.gridRow = '4 / 6';
+        }
+        moveUpLocation();
+    
+        function moveUpWelcomeText() {
+            const welcomeText = document.querySelector('.welcome-text');
+            welcomeText.style.gridRow = '2 / 3'; 
+        }
+        moveUpWelcomeText();
+    
+        function moveUpZone() {
+            const zone = document.querySelector('#actual-zone');
+            zone.style.gridRow = '4 / 5';
+        }
+        moveUpZone();
+    
+        function moveUpButton() {
+            const button = document.querySelector('.button');
+            button.style.gridRow = '4 / 6';
+        }
+        moveUpButton();
+
+        const greyContainer = document.querySelector('#grey-container');
+        greyContainer.style.display = 'flex';
+
+        isMoved = true;
+    }
+    else {
+        function removeQuote() {
+            const quote = document.querySelector('#quote');
+            const author = document.querySelector('#author');
+            const arrow = document.querySelector('#refresh-arrow');
+    
+            quote.style.display = '';
+            author.style.display = '';
+            arrow.style.display = '';
+        }
+        removeQuote();
+    
+        function changeTextButton() {
+            const textButton = document.querySelector('#button-text');
+            textButton.innerHTML = 'MORE';
+        }
+        changeTextButton();
+    
+        function changeArrowButton() {
+            const arrowButton = document.querySelector('#arrow-down');
+            arrowButton.setAttribute('src', 'assets/desktop/icon-arrow-down.svg');
+        }
+        changeArrowButton();
+    
+        function moveDownTime() {
+            const time = document.querySelector('#actual-time');
+            time.style.gridRow = '7 / 9';
+        }
+        moveDownTime();
+    
+        function moveDownLocation() {
+            const location = document.querySelector('.location');
+            location.style.gridRow = '10 / 11';
+        }
+        moveDownLocation();
+    
+        function moveDownWelcomeText() {
+            const welcomeText = document.querySelector('.welcome-text');
+            welcomeText.style.gridRow = '7 / 8'; 
+        }
+        moveDownWelcomeText();
+    
+        function moveDownZone() {
+            const zone = document.querySelector('#actual-zone');
+            zone.style.gridRow = '9 / 10';
+        }
+        moveDownZone();
+    
+        function moveDownButton() {
+            const button = document.querySelector('.button');
+            button.style.gridRow = '10 / 11';
+        }
+        moveDownButton();
+
+        const greyContainer = document.querySelector('#grey-container');
+        greyContainer.style.display = 'none';
+
+        isMoved = false;
+    }
+})
+
+// FETCHING DATA FOR GREY CONTAINER
+
+async function fetchCurrentTime() {
+    const response = await fetch("http://worldtimeapi.org/api/ip")
+    const result = await response.json();
+    const timezone = result.timezone;
+
+    const timeZoneText = document.querySelector('#timezone-text');
+    timeZoneText.innerHTML = timezone;
+}
+fetchCurrentTime();
+
+async function fetchDayWeek() {
+    const response = await fetch("http://worldtimeapi.org/api/ip")
+    const result = await response.json();
+    console.log(result);
+    const weekDay = result.day_of_week;
+
+    const weekDayNumber = document.querySelector('#weekday-number');
+    weekDayNumber.innerHTML = weekDay;
+}
+fetchDayWeek();
+
+async function fetchDayYear() {
+    const response = await fetch("http://worldtimeapi.org/api/ip")
+    const result = await response.json();
+    console.log(result);
+    const yearDay = result.day_of_year;
+
+    const yearDayNumber = document.querySelector('#yearday-number');
+    yearDayNumber.innerHTML = yearDay;
+}
+fetchDayYear();
+
+async function fetchWeekNumber() {
+    const response = await fetch("http://worldtimeapi.org/api/ip")
+    const result = await response.json();
+    console.log(result);
+    const week = result.week_number;
+
+    const weekNumber = document.querySelector('#week');
+    weekNumber.innerHTML = week;
+}
+fetchWeekNumber();

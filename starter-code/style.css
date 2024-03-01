@@ -19,7 +19,7 @@ body {
 }
 
 .black-bg {
-    background-color: #00000032;
+    background-color: #0000005d;
 }
 
 .grid-container {
@@ -105,11 +105,13 @@ body {
 }
 
 #actual-zone {
+    height: auto;
+    width: auto;
     font-size: 2.5rem;
     font-weight: lighter;
     grid-row: 9 / 10;
     grid-column: 6 / 7;
-    margin-left: 72px;
+    margin-left: 50px;
     color: #fff;
     align-self: flex-end;
 }
@@ -139,13 +141,13 @@ body {
 
 #more-button {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     background-color: #fff;
     color: #303030;
     font-weight: bold;
     height: 56px;
-    width: 146;
+    width: 146px;
     padding: 20px;
     border-radius: 30px;
     border: none;
@@ -165,4 +167,54 @@ body {
     &:hover {
         cursor: pointer;
     }
+}
+
+#grey-container {
+    display: none;
+    width: auto;
+    height: auto;
+    background-color: #ffffffcd;
+    grid-row: 7 / 12;
+    grid-column: 1 / 12;
+    padding: 80px 165px;
+    flex-wrap: wrap;
+    transform: translateY(-400px);
+}
+
+#grey-container h3 {
+    margin-bottom: 9px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+#grey-container span {
+    font-weight: bold;
+    font-size: 3.5rem;
+    justify-self: flex-end;
+}
+
+#up-part {
+    display: flex;
+    justify-content: space-between;
+    width: 844px;
+    height: auto;
+    padding-bottom: 60px;
+}
+
+#down-part {
+    display: flex;
+    justify-content: space-between;
+    width: 844px;
+    height: auto;
+}
+
+#current-timezone { 
+    width: 70%;
+    border-right: 1px solid black;
+}
+
+#day-year { 
+    width: 70%;
+    border-right: 1px solid black;
 }
