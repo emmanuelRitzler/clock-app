@@ -232,6 +232,40 @@ body {
     width: 100%;
 }
 
+@media only screen and (min-width: 2018px) and (max-width: 9999px) {
+    #grey-container {
+        display: none;
+        width: 100%;
+        height: 440px;
+        padding: 0px 40px;
+        flex-wrap: wrap;
+        transform: translateY(-440px);
+        backdrop-filter: blur(8px);
+        align-items: center;
+    }
+    #grey-container h3 {
+        font-size: 0.8125rem;
+        margin-bottom: 0px;
+    }
+    #grey-container span {
+        font-size: 2.5rem;
+    }
+    #up-part {
+        display: flex;
+        align-items: center;
+        width: 538px;
+        padding-bottom: 0px;
+    }
+    #down-part {
+        width: 538px;
+    }
+    #current-timezone,
+    #day-year { 
+    width: 120%;
+    border-right: 0px solid black;
+    }
+}
+
 @media only screen and (min-width: 471px) and (max-width: 845px) {
     .grid-container {
         margin: 0 auto;
