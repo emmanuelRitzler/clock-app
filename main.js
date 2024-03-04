@@ -24,7 +24,7 @@ fetchQuote();
 
 async function fetchTime() {
     try {
-        const response = await fetch("http://worldtimeapi.org/api/ip");
+        const response = await fetch("https://worldtimeapi.org/api/ip");
         const result = await response.json();
         const datetime = result.datetime;
         const dateObject = new Date(datetime);
@@ -50,7 +50,7 @@ fetchTime();
 
 async function getMessage() {
     try {
-        const response = await fetch("http://worldtimeapi.org/api/ip");
+        const response = await fetch("https://worldtimeapi.org/api/ip");
         const result = await response.json();
         const datetime = result.datetime;
         const dateObject = new Date(datetime);
@@ -97,7 +97,7 @@ async function getMessage() {
 getMessage();
 
 async function changeBackgroundImage() {
-    const response = await fetch("http://worldtimeapi.org/api/ip");
+    const response = await fetch("https://worldtimeapi.org/api/ip");
     const result = await response.json();
     const datetime = result.datetime;
     const dateObject = new Date(datetime);
@@ -120,7 +120,7 @@ async function changeBackgroundImage() {
 changeBackgroundImage();
 
 async function changeColorContainer() {
-    const response = await fetch("http://worldtimeapi.org/api/ip");
+    const response = await fetch("https://worldtimeapi.org/api/ip");
     const result = await response.json();
     const datetime = result.datetime;
     const dateObject = new Date(datetime);
@@ -146,7 +146,7 @@ async function changeColorContainer() {
 changeColorContainer();
 
 async function changeIcon() {
-    const response = await fetch("http://worldtimeapi.org/api/ip");
+    const response = await fetch("https://worldtimeapi.org/api/ip");
     const result = await response.json();
     const datetime = result.datetime;
     const dateObject = new Date(datetime);
