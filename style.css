@@ -291,7 +291,7 @@ body {
     }
     #grey-container {
         display: none;
-        width: auto;
+        width: 100%;
         height: 440px;
         padding: 80px 40px;
         flex-wrap: wrap;

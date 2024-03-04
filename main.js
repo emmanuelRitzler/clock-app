@@ -327,7 +327,8 @@ arrow.addEventListener('click', event => {
             bodyBackground.style.height = '1024px';
         }
         else if (window.innerWidth <= 470) {
-            bodyBackground.style.height = '667px';
+            bodyBackground.style.height = '100%';
+            bodyBackground.style.backgroundSize = 'cover';
         } 
         else {
             bodyBackground.style.backgroundSize = 'cover';
