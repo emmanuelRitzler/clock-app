@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Frontend Mentor | Clock App</title>
+</head>
+<body>
+  <div class="black-bg">
+    <div class="grid-container">
+      <div class="quote-container">
+        <p id="quote"></p>
+        <h3 id="author"></h3>
+      </div>
+      <img id="refresh-arrow" src="starter-code/assets/desktop/icon-refresh.svg" alt="icon refresh quote">
+      <div class="welcome-text">
+        <img id="icon" src="starter-code/assets/desktop/icon-sun.svg" alt="sun icon">
+        <span id="greeting-message"></span>
+      </div>
+      <div class="time-and-zone">
+        <h1 id="actual-time"></h1>
+        <h2 id="actual-zone"></h2>
+      </div>
+      <div class="button-and-loc">
+        <div class="location">
+          <h2 id="city"></h2>
+        </div>
+        <div class="button">
+          <button id="more-button">
+            <span id="button-text">MORE</span>
+            <div id="arrow-down-container">
+              <img id="arrow-down" src="starter-code/assets/desktop/icon-arrow-down.svg" alt="arrow down more details">
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="grey-container">
+      <div id="up-part">
+        <div id="current-timezone">
+          <h3>CURRENT TIMEZONE</h3>
+          <span id="timezone-text"></span>
+        </div>
+        <div id="day-week">
+          <h3>DAY OF THE WEEK</h3>
+          <span id="weekday-number"></span>
+        </div>
+      </div>
+      <div id="down-part">
+        <div id="day-year">
+          <h3>DAY OF THE YEAR</h3>
+          <span id="yearday-number"></span>
+        </div>
+        <div id="week-number">
+          <h3>WEEK NUMBER</h3>
+          <span id="week"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>
