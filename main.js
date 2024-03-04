@@ -10,6 +10,7 @@ async function fetchQuote() {
     try {
     const response = await fetch("https://api.quotable.io/quotes/random");
     const result = await response.json();
+    console.log(result);
     const quote = document.querySelector('#quote');
     const author = document.querySelector('#author');
     quoteArray = result.content;
@@ -24,7 +25,7 @@ fetchQuote();
 
 async function fetchTime() {
     try {
-        const response = await fetch("https://worldtimeapi.org/api/ip");
+        const response = await fetch("http://worldtimeapi.org/api/ip");
         const result = await response.json();
         const datetime = result.datetime;
         const dateObject = new Date(datetime);
@@ -50,7 +51,7 @@ fetchTime();
 
 async function getMessage() {
     try {
-        const response = await fetch("https://worldtimeapi.org/api/ip");
+        const response = await fetch("http://worldtimeapi.org/api/ip");
         const result = await response.json();
         const datetime = result.datetime;
         const dateObject = new Date(datetime);
@@ -97,7 +98,7 @@ async function getMessage() {
 getMessage();
 
 async function changeBackgroundImage() {
-    const response = await fetch("https://worldtimeapi.org/api/ip");
+    const response = await fetch("http://worldtimeapi.org/api/ip");
     const result = await response.json();
     const datetime = result.datetime;
     const dateObject = new Date(datetime);
@@ -120,7 +121,7 @@ async function changeBackgroundImage() {
 changeBackgroundImage();
 
 async function changeColorContainer() {
-    const response = await fetch("https://worldtimeapi.org/api/ip");
+    const response = await fetch("http://worldtimeapi.org/api/ip");
     const result = await response.json();
     const datetime = result.datetime;
     const dateObject = new Date(datetime);
@@ -146,7 +147,7 @@ async function changeColorContainer() {
 changeColorContainer();
 
 async function changeIcon() {
-    const response = await fetch("https://worldtimeapi.org/api/ip");
+    const response = await fetch("http://worldtimeapi.org/api/ip");
     const result = await response.json();
     const datetime = result.datetime;
     const dateObject = new Date(datetime);
@@ -188,7 +189,7 @@ refreshArrow.addEventListener('click', event => {
 
     async function changeQuote() {
         try {
-            const response = await fetch("https://api.quotable.io/quotes/random");
+            const response = await fetch("http://api.quotable.io/quotes/random");
             const result = await response.json();
             const quote = document.querySelector('#quote');
             const author = document.querySelector('#author');
