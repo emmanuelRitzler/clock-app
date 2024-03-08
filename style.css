@@ -411,8 +411,8 @@ body {
         margin-left: 10px;
     }
     #arrow-down {
-        height: 5px;
-        width: 10px;
+        height: 32px;
+        width: 32px;
     }
     .button {
         grid-column: 1 / 3;

@@ -27,6 +27,7 @@ async function fetchTime() {
     try {
         const response = await fetch("https://worldtimeapi.org/api/ip");
         const result = await response.json();
+        console.log(result);
         const datetime = result.datetime;
         const dateObject = new Date(datetime);
         const hours = dateObject.getHours();
@@ -43,6 +44,15 @@ async function fetchTime() {
 
         const time = document.querySelector('#actual-time');
         time.innerHTML = displayTime;
+
+        setInterval(function() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+            let formattedTime = hours + ':' + (minutes < 10 ? '0' + minutes : minutes);
+            time.innerHTML = formattedTime;
+        }, 1000);
     } catch (error) {
         error();
     }
@@ -59,30 +69,39 @@ async function getMessage() {
 
         let message = '';
 
-        if (hours >= 5 && hours < 12) {
-            message = `Good Morning, it's currently`;
+        if (window.innerWidth < 471) {
+            if (hours >= 0 && hours < 5) {
+                message = `Good Evening`;
+            }
+            else if (hours >= 5 && hours < 12) {
+                message = `Good Morning`;
+            }
+            else if (hours >= 12 && hours < 18) {
+                message = `Good Afternoon`;
+            }
+            else if (hours >= 18 && hours < 24) {
+                message = `Good Evening`;
+            }
+            else {
+                error();
+            }
         }
-        else if (hours >= 12 && hours < 18) {
-            message = `Good Afternoon, it's currently`;
-        }
-        else {
-            message = `Good Evening, it's currently`;
-        }
-
-        if (hours >= 0 && hours < 5 && window.innerWidth < 471) {
-            message = `Good Evening`;
-        }
-        else if (hours >= 5 && hours < 12 && window.innerWidth < 471) {
-            message = `Good Morning`;
-        }
-        else if (hours >= 12 && hours < 18 && window.innerWidth < 471) {
-            message = `Good Afternoon`;
-        }
-        else if (hours >= 18 && hours < 24 && window.innerWidth < 471) {
-            message = `Good Evening`;
-        }
-        else {
-            error();
+        else if (window.innerWidth >= 471) {
+            if (hours >= 5 && hours < 12) {
+                message = `Good Morning, it's currently`;
+            }
+            else if (hours >= 12 && hours < 18) {
+                message = `Good Afternoon, it's currently`;
+            }
+            else if (hours >= 18 && hours < 24) {
+                message = `Good Evening, it's currently`;
+            }
+            else if (hours >= 0 && hours < 5) {
+                message = `Good Evening, it's currently`;
+            }
+            else {
+                error();
+            }
         }
 
         const greeting = document.querySelector('#greeting-message');
@@ -155,10 +174,13 @@ async function changeIcon() {
     const icon = document.querySelector('#icon');
     let image = icon.getAttribute('src');
 
-    if (hours < 18) {
+    if (hours >= 6 && hours < 18) {
         image = 'starter-code/assets/desktop/icon-sun.svg';
     }
     else if (hours >= 18 && hours < 24) {
+        image = 'starter-code/assets/desktop/icon-moon.svg';
+    }
+    else if (hours >= 0 && hours < 6) {
         image = 'starter-code/assets/desktop/icon-moon.svg';
     }
     else {
@@ -169,11 +191,11 @@ async function changeIcon() {
 changeIcon();
 
 async function fetchLocation() {
-    const response = await fetch('https://ip-api.com/json/');
+    const response = await fetch('https://api.apibundle.io/ip-lookup?apikey=67a576ced39f497a8a8319c13a9100e9&ip');
     const result = await response.json();
     console.log(result);
-    const city = result.city;
-    const country = result.country;
+    const city = result.city.name;
+    const country = result.country.name;
     const cityCountry = `In ${city}, ${country}`;
     const locationText = document.querySelector('#city');
     locationText.innerHTML = cityCountry;
